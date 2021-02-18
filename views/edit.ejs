@@ -1,0 +1,10 @@
+
+   <div id="edit-div">
+   <form action="/edit" method="POST" >
+   
+        <input type="text" id="edit-input" name="name" value="<%=todoEdit.name%>">
+        <input type="text" name="id" value="<%=todoEdit._id%>" hidden>
+        <input type="text" name="editRef" value="<%=editReferer%>" hidden>
+        <button id="edit-button">Edit</button>
+    </div>
+    </form>

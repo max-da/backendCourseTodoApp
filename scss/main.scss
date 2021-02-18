@@ -1,0 +1,181 @@
+@import "./mqs";
+html {
+  height: 100%;
+}
+*,
+*:focus {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+a {
+  font-size: 1rem;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+button:hover {
+  cursor: pointer;
+}
+
+body {
+  background-color: #f1faee;
+  height: 100%;
+  width: 100%;
+}
+
+#content-wrapper,
+#content-box {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#banner {
+  margin: 10%;
+  height: 10%;
+  width: 100%;
+  text-align: center;
+  background-color: #ff206e;
+  h1 {
+    margin: 10%;
+    @include tablets-up {
+      font-size: 3.2rem;
+    }
+  }
+}
+#content-box {
+
+  width: 80%;
+  height: 100%;
+  background-color: #638475;
+  #inpt-and-lis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    .todo-box,
+    #add-input-error-div {
+     
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      padding-top: 8%;
+      padding-bottom: 8%;
+      margin-bottom: 3px;
+      background-color: #f1faee;
+      color: #e63946;
+      box-shadow: 2px 4px 3px -1px grey;
+
+      .todo-item,
+      #add-input-error-p {
+        text-align: center;
+        width: 100%;
+        font-size: 1.3rem;
+        font-weight: 1000;
+        @include tablets-up {
+          font-size: 2rem;
+        }
+      }
+      .link-box {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        right: 12%;
+        margin: 10px;
+        display: flex;
+        flex-direction: row;
+        a {
+          margin: 1px;
+          text-decoration: none;
+          i {
+            color: #ff206e;
+          }
+        }
+      }
+    }
+  }
+  #input-and-button,
+  #edit-div {
+    height: 100%;
+    width: 100%;
+    margin: 10px 0 10px 0;
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0px 4px 8px -5px darkgrey;
+      input {
+        width: 100%;
+        font-size: 2rem;
+        margin: 0;
+        border: 0;
+        height: 100%;
+        box-shadow: 0px 4px 8px -5px darkgrey;
+      }
+
+      button {
+        width: 25%;
+        margin: 0;
+        border: 0;
+        height: 37px;
+        background-color: #ff206e;
+   
+        box-shadow: 0px 4px 8px -5px darkgrey;
+      }
+      button:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+#sort-links {
+  display: flex;
+  flex-direction: column;
+}
+
+#add-data-input {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+#add-input-error {
+  background-color: white;
+  position: relative;
+  padding: 10px;
+
+  z-index: 500;
+}
+
+@include tablets-up {
+  #add-data-input {
+    height: 10%;
+  }
+  #stripe-div {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+  }
+  .link-box {
+    left: 62%;
+    i {
+      font-size: 2rem;
+    }
+  }
+  #content-wrapper {
+    width: 50%;
+  }
+}

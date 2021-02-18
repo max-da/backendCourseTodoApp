@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-list</title>
+    <link href="/css/main.css" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/7002be5812.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="stripe-div">
+      <div id="content-wrapper">
+        <div id="banner"><h1>Todo-list</h1></div>
+
+        <div id="content-box">
+          <div id="inpt-and-lis">
+            <% if (todoEdit =="") { %> <%- include("add.ejs") %> <% } %> <% if
+            (todoEdit != ""){ %> <%- include("edit.ejs") %> <% } %>
+            <div id="sort-links">
+              <a href="/myTodos/?page=<%=(dataToShow/dataPerPage)%>&&sorted=1">
+                Sort by oldest
+              </a>
+              <a href="/myTodos/?page=<%=(dataToShow/dataPerPage)%>&&sorted=-1">
+                Sort by newest
+              </a>
+            </div>
+            <% if (error != "") { %>
+            <div id="add-input-error-div">
+              <p id="add-input-error-p"><%=error%></p>
+            </div>
+            <% } %> <% for(let i = 0; i < data.length; i++){ %>
+            <div class="todo-box">
+              <% let toBeCapped = data[i].name %> <% let cappedString =
+              (toBeCapped[0].toUpperCase() + toBeCapped.slice(1)); %>
+              <span class="todo-item"> <%=cappedString%> </span>
+              <div class="link-box">
+                <% if (removeLink !== 1){ %>
+                <a href="/delete/<%= data[i]._id %>"
+                  ><i class="fas fa-trash-alt"></i
+                ></a>
+                <a href="/edit/<%= data[i]._id %>"
+                  ><i class="far fa-edit"></i>
+                </a>
+                <% } %>
+              </div>
+            </div>
+
+            <% } %> <% if(totaldata !== dataToShow && totaldata >= dataToShow){
+            %>
+            <a href="/myTodos/?page=<%=(dataToShow/dataPerPage)+1%>">Show more</a>
+
+            <% }else if(totaldata <= 2) { %> <% } else { %>
+            <a href="/myTodos/?page=1">Show fewer</a>
+            <%} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
