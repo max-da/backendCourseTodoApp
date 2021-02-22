@@ -9,22 +9,24 @@ const registerGET = (req, res) => {
 
 const registerPOST = async (req, res) => {
   try {
-    const { email, password, confirmPassword } = req.body;
+    const { firstname, lastname,email, password, confirmPassword } = req.body;
     const salt = await bcrypt.genSalt(10);
 
     if (password === confirmPassword) {
       const hashedPassword = await bcrypt.hash(password, salt);
 
-      console.log(hashedPassword);
+    
       const user = await new User({
+        firstname:firstname,
+        lastname:lastname,
         email: email,
         password: hashedPassword,
       }).save();
 
-      return res.send("succ");
+      return res.redirect("/registerSuccess");
     } else {
         
-      console.log({ err: "lösen matcha " });
+     
       return res.render("register.ejs",{err:"Lösenorden matchar ej"})
     }
   } catch (err) {
@@ -32,7 +34,16 @@ const registerPOST = async (req, res) => {
   }
 };
 
+const regSuccGET = (req,res)=>{
+  
+ 
+  res.render("regSuccess.ejs");
+
+ 
+}
+
 module.exports = {
   registerGET,
   registerPOST,
+  regSuccGET
 };

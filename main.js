@@ -8,8 +8,12 @@ app.use(express.urlencoded({extended : true}));
 require("dotenv").config();
 const registerRouter = require("./router/registerRouter")
 const todoRouter = require("./router/todoRouter")
+const loginRouter = require("./router/loginRouter")
+const homeRouter = require("./router/homeRouter")
+const resetRouter = require("./router/resetRouter")
 const options ={useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true, useCreateIndex: true}
 //app.use("/", router)
+const cookieParser = require("cookie-parser")
 app.set("view engine", "ejs")
 
 app.use(express.static(__dirname + "/public/style"))
@@ -20,12 +24,16 @@ app.use(nodeSass(
 )
     )
 
-    app.use(registerRouter)
-    app.use(todoRouter)
-
+  
+    app.use(cookieParser())
 mongoose.connect(process.env.DbLogin,options, (err)=>{
     if (err) return
     app.listen(8000,()=>{
         console.log("Portnumber:8000")
     })
 })
+app.use(resetRouter)
+app.use(homeRouter)
+app.use(registerRouter)
+app.use(todoRouter)
+app.use(loginRouter)
