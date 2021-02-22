@@ -1,13 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const Todo = require("../models/todoSchema");
+const User = require("../models/userSchema")
+
 const homeRender = async (req, res) => {
     const page = +req.query.page || 1;
     const sorted = +req.query.sorted || 1;
-  
+    
     try {
+      const user = await User.findOne({email: req.decoded.user.email})
+      console.log(user.userTodos.length)
+   //   const x = await user.userTodos.find().countDocuments();
+    
       const totaldata = await Todo.find().countDocuments();
-  
+      console.log(totaldata)
       const dataPerPage = 2;
       const dataToShow = page + page;
       const data = await Todo.find().limit(dataToShow).sort({ date: sorted });
@@ -37,13 +43,18 @@ const addDataPOST = async (req, res) => {
     const sorted = +req.query.sorted || 1;
     
     try {
-      await new Todo({
+      const  todo = await new Todo({
         name: req.body.name,
       }).save();
+      console.log(req.decoded.user.email)
+      const user = await User.findOne({email: req.decoded.user.email})
+     
+      user.addUserTodo(todo)
+
       res.redirect("/myTodos");
     } 
     catch (err) {
-      
+      console.log(err)
       const error = "Your todo is too short or too long";
   
       const totaldata = await Todo.find().countDocuments();

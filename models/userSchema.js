@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Todo = require("./todoSchema");
 
 
 const userSchema = new mongoose.Schema ({
@@ -8,11 +9,19 @@ const userSchema = new mongoose.Schema ({
     password:{type:String, required:true, minlength:5},
     token: String,
     tokenExp: Date,
-
+    userTodos: [{
+        type:mongoose.Schema.ObjectId,
+        ref: "Todo",
+    }]
 
 
 
 })
+
+userSchema.methods.addUserTodo =  function(todoID){
+    this.userTodos.push(todoID);
+    this.save();
+}
 
 const User = mongoose.model("User",userSchema)
 module.exports = User;

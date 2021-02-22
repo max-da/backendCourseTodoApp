@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const verifyUser = require("../middleware/verifyUser")
+const jwtDecode = require("../middleware/jwtDecode")
 const {homeRender,
        addDataGET,
        addDataPOST,
@@ -11,20 +12,20 @@ const {homeRender,
 
 } = require("../controllers/todoControl")
 
-router.get("/myTodos", verifyUser, homeRender);
+router.get("/myTodos", verifyUser, jwtDecode, homeRender);
 
 
-router.get("/addData",verifyUser, addDataGET)
+router.get("/addData",verifyUser,jwtDecode, addDataGET)
 
 
 
-router.post("/addData", verifyUser,addDataPOST)
+router.post("/addData", verifyUser,jwtDecode,addDataPOST)
 
 
-router.get("/delete/:id",verifyUser, deleteGET)
+router.get("/delete/:id",verifyUser, jwtDecode,deleteGET)
 
-router.get("/edit/:id",verifyUser, editGET)
+router.get("/edit/:id",verifyUser,jwtDecode, editGET)
 
-router.post("/edit",verifyUser, editPOST)
+router.post("/edit",verifyUser,jwtDecode, editPOST)
 
 module.exports = router;

@@ -29,7 +29,7 @@ const loginPOST = async (req, res) => {
         const cookie = req.cookies.jwToken;
 
    if (!cookie){
-        res.cookie("jwToken",jwToken,{maxAge: 604800, httpOnly:true})
+        res.cookie("jwToken",jwToken,{maxAge: 604800000, httpOnly:true})
     }
 
 
