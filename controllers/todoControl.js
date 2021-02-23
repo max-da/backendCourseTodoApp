@@ -20,7 +20,7 @@ const homeRender = async (req, res) => {
       const dataToShow = page + page;
       ///const data = await Todo.find().limit(dataToShow).sort({ date: sorted });
      
-      const x = await User.findOne({email: req.email}).populate({path:"userTodos", limit:dataToShow})//.limit(dataToShow)
+      const x = await User.findOne({email: req.email}).populate({path:"userTodos",  options: { sort: { date: sorted },limit:dataToShow}})
      const data = x.userTodos
      // console.log(x.userTodos[0])
       res.render("index.ejs", {
@@ -68,7 +68,7 @@ const addDataPOST = async (req, res) => {
       const dataToShow = page + page;
     
      // const data = await Todo.find().limit(dataToShow).sort({ name: sorted });
-     const x = await User.findOne({email: req.email}).populate({path:"userTodos", limit:dataToShow})//.limit(dataToShow)
+     const x = await User.findOne({email: req.email}).populate({path:"userTodos",  options: { sort: { date: sorted },limit:dataToShow}})
      const data = x.userTodos
   
       res.render("index.ejs", {
@@ -102,10 +102,13 @@ const addDataPOST = async (req, res) => {
 const editGET = async (req, res) => {
     try {
       const todoEdit = await Todo.findOne({ _id: req.params.id });
+      console.log(todoEdit)
       let error = "";
       const editReferer = req.headers.referer;
      
-      const data = await Todo.find();
+     // const data = await Todo.find();
+     const x = await User.findOne({email: req.email}).populate({path:"userTodos"})//.limit(dataToShow)
+     const data = x.userTodos
   
       res.render("index.ejs", {
         todoEdit: todoEdit,
@@ -119,7 +122,7 @@ const editGET = async (req, res) => {
         dataToShow: "",
       });
     } catch (err) {
-     
+      console.log(err)
       const error = "Please enter a todo before submitting";
       const data = await Todo.find();
       res.render("index.ejs", {
@@ -144,25 +147,30 @@ const editPOST = async (req, res) => {
         },
         { runValidators: true }
       );
+      res.redirect(req.body.editRef);
     } catch (err) {
   
   
       const error = "Please finish editing todo before submitting";
-      const data = await Todo.find();
-      const todoEdit = "";
+    //  const data = await Todo.find();
+      const x = await User.findOne({email: req.email}).populate({path:"userTodos"})//.limit(dataToShow)
+      const data = x.userTodos
+      console.log(data)
+     // const todoEdit = "";
       res.render("index.ejs", {
         data: data,
         error: error,
-        todoEdit: todoEdit,
+        todoEdit: "",
         totaldata: "",
         dataPerPage: "",
         totalDataPart: "",
         dataToShow: "",
-        data: "",
+        //data: "",
+        removeLink:1,
       });
     }
   
-    res.redirect(req.body.editRef);
+   
   };
 
 module.exports = {
