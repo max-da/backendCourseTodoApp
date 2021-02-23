@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const todoSchema = new mongoose.Schema({
-
+/*     todoUser: [{
+        type:mongoose.Schema.ObjectId,
+        ref: "User",
+    }], */
         name:{
             type: String,
             lowercase: true,

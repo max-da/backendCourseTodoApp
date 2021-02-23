@@ -8,16 +8,21 @@ const homeRender = async (req, res) => {
     const sorted = +req.query.sorted || 1;
     
     try {
-      const user = await User.findOne({email: req.decoded.user.email})
-      console.log(user.userTodos.length)
+     
+      const user = await User.findOne({email: req.email})
+      //console.log(user.userTodos.length)
    //   const x = await user.userTodos.find().countDocuments();
     
-      const totaldata = await Todo.find().countDocuments();
-      console.log(totaldata)
+      const totaldata = user.userTodos.length
+     // const totaldata = await Todo.find().countDocuments();
+     // console.log(totaldata)
       const dataPerPage = 2;
       const dataToShow = page + page;
-      const data = await Todo.find().limit(dataToShow).sort({ date: sorted });
-  
+      ///const data = await Todo.find().limit(dataToShow).sort({ date: sorted });
+     
+      const x = await User.findOne({email: req.email}).populate({path:"userTodos", limit:dataToShow})//.limit(dataToShow)
+     const data = x.userTodos
+     // console.log(x.userTodos[0])
       res.render("index.ejs", {
         totaldata,
         dataPerPage,
@@ -46,8 +51,8 @@ const addDataPOST = async (req, res) => {
       const  todo = await new Todo({
         name: req.body.name,
       }).save();
-      console.log(req.decoded.user.email)
-      const user = await User.findOne({email: req.decoded.user.email})
+    
+      const user = await User.findOne({email: req.email})
      
       user.addUserTodo(todo)
 
@@ -61,7 +66,10 @@ const addDataPOST = async (req, res) => {
   
       const dataPerPage = 2;
       const dataToShow = page + page;
-      const data = await Todo.find().limit(dataToShow).sort({ name: sorted });
+    
+     // const data = await Todo.find().limit(dataToShow).sort({ name: sorted });
+     const x = await User.findOne({email: req.email}).populate({path:"userTodos", limit:dataToShow})//.limit(dataToShow)
+     const data = x.userTodos
   
       res.render("index.ejs", {
         data: data,
@@ -78,8 +86,17 @@ const addDataPOST = async (req, res) => {
   };
   
   const deleteGET = async (req, res) => {
+    
     await Todo.deleteOne({ _id: req.params.id });
-    res.redirect(req.headers.referer);
+    const id = req.params.id;
+ 
+
+
+  const user = await User.findOne({email: req.email})
+  user.removeFromUserTodo(id)
+
+
+   res.redirect(req.headers.referer);
   };
 
 const editGET = async (req, res) => {

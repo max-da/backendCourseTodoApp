@@ -1,7 +1,10 @@
 @import "./mqs";
+@import "./_login";
+@import "./mixins";
+
 html {
   height: 100%;
-}
+} 
 *,
 *:focus {
   margin: 0;
@@ -35,18 +38,9 @@ body {
   flex-direction: column;
 }
 
-#banner {
-  margin: 10%;
-  height: 10%;
-  width: 100%;
-  text-align: center;
-  background-color: #ff206e;
-  h1 {
-    margin: 10%;
-    @include tablets-up {
-      font-size: 3.2rem;
-    }
-  }
+///banner
+.banner{
+  @include banner;
 }
 #content-box {
 

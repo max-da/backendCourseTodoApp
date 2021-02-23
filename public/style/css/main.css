@@ -1,3 +1,11 @@
+#login-body, form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%; }
+
 html {
   height: 100%; }
 
@@ -31,16 +39,16 @@ body {
   align-items: center;
   flex-direction: column; }
 
-#banner {
+.banner {
   margin: 10%;
   height: 10%;
   width: 100%;
   text-align: center;
   background-color: #ff206e; }
-  #banner h1 {
+  .banner h1 {
     margin: 10%; }
     @media screen and (min-width: 768px) {
-      #banner h1 {
+      .banner h1 {
         font-size: 3.2rem; } }
 
 #content-box {

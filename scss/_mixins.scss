@@ -1,0 +1,20 @@
+@import "./mqs";
+
+@mixin banner {
+   
+        margin: 10%;
+        height: 10%;
+        width: 100%;
+        text-align: center;
+        background-color: #ff206e;
+        h1 { 
+          margin: 10%;
+          @include tablets-up { 
+            font-size: 3.2rem;
+          }
+        }
+      
+}
+
+
+

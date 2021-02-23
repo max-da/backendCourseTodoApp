@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema ({
     tokenExp: Date,
     userTodos: [{
         type:mongoose.Schema.ObjectId,
-        ref: "Todo",
+        ref: "todo",
     }]
 
 
@@ -21,6 +21,13 @@ const userSchema = new mongoose.Schema ({
 userSchema.methods.addUserTodo =  function(todoID){
     this.userTodos.push(todoID);
     this.save();
+}
+
+userSchema.methods.removeFromUserTodo = function(id){
+    const index = this.userTodos.indexOf(id);
+      this.userTodos.splice(index, 1);
+    
+    this.save()
 }
 
 const User = mongoose.model("User",userSchema)
