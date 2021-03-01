@@ -11,6 +11,7 @@ const todoRouter = require("./router/todoRouter")
 const loginRouter = require("./router/loginRouter")
 const homeRouter = require("./router/homeRouter")
 const resetRouter = require("./router/resetRouter")
+
 const options ={useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:true, useCreateIndex: true}
 //app.use("/", router)
 const cookieParser = require("cookie-parser")
@@ -37,3 +38,4 @@ app.use(homeRouter)
 app.use(registerRouter)
 app.use(todoRouter)
 app.use(loginRouter)
+//app.use(fbRouter)
