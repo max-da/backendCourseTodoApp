@@ -3,11 +3,14 @@ const Todo = require("./todoSchema");
 
 
 const userSchema = new mongoose.Schema ({
-    firstname:{type:String, required:true},
+    firstname:{
+        type:String,
+        required:[true,"please enter all fields"]},
     lastname:{type:String, required:true},
     email:{type:String, required: true, unique:true},
-    facebookId:String,
     password:{type:String, required:true, minlength:5},
+   // confirmPassword:{type:String, required:true, minlength:5},
+   // passwordChecked: false,
     token: String,
     tokenExp: Date,
     userTodos: [{
@@ -18,7 +21,13 @@ const userSchema = new mongoose.Schema ({
 
 
 })
-
+userSchema.methods.passwordChecker = function(){
+    if (this.password===this.confirmPassword){
+        //this.passwordChecked = true;
+        return true;
+       // this.save();
+    }
+}
 userSchema.methods.addUserTodo =  function(todoID){
     this.userTodos.push(todoID);
     this.save();

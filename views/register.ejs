@@ -10,6 +10,11 @@
 
 
 </form>
-<% if (err) {%>
-    <%=err%>
-<%}%>
+
+
+<%if(err == "E11000"){%>
+    <p>This email is already registred, please <a href="/login">login</a> instead</p>
+<%} else if(err){ %>
+
+       <p><%=err%></p> 
+    <%}%>
