@@ -77,6 +77,7 @@ try{
     const {email, password, confirmPassword} = req.body
     const salt = await bcrypt.genSalt(10);
     if (!password || !confirmPassword) res.render("resetPasswordForm.ejs", {err:"Please enter both fields", email:email})
+    if (password <= 5 || confirmPassword <= 5) res.render("resetPasswordform.ejs", {err:"Password must be atleast 5 characters long", email:email})
     if (password === confirmPassword) {
         const hashedPassword = await bcrypt.hash(password,salt)
         const user = await  User.findOne({email:email})
