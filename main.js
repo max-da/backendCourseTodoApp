@@ -17,14 +17,17 @@ const options ={useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex:t
 const cookieParser = require("cookie-parser")
 app.set("view engine", "ejs")
 
-app.use(express.static(__dirname + "/public/style"))
+
 app.use(nodeSass(
        { src:__dirname + "/scss",
-        dest: __dirname + "/public/style"}
+        dest: __dirname + "/public/style/css",
+        debug:true,
+    outputStyle:"compressed",
+prefix:"/css"}
 
 )
     )
-
+    app.use(express.static(__dirname + "/public/style"))
   
     app.use(cookieParser())
 mongoose.connect(process.env.DbLogin,options, (err)=>{
