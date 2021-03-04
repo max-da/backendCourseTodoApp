@@ -56,7 +56,7 @@ const addDataPOST = async (req, res) => {
      
       user.addUserTodo(todo)
 
-      res.redirect("/myTodos");
+      res.redirect("/");
     } 
     catch (err) {
       console.log(err)

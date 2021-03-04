@@ -1,0 +1,8 @@
+@import "./imports";
+
+#succ-container{
+    @include main-content-container;
+    .banner{
+        @include banner-mix;
+    }
+}

@@ -11,7 +11,7 @@ const registerPOST = async (req, res) => {
   try {
     const { firstname, lastname,email, password, confirmPassword } = req.body;
     const salt = await bcrypt.genSalt(10);
-
+    
    if (password && password != confirmPassword || password && password.length < 5){
     return res.render("register.ejs", {err:"Password is too short or doesn't match"})
    }else if (password){
@@ -23,7 +23,7 @@ const registerPOST = async (req, res) => {
       email: email,
       password:hashedPassword,
     }).save()
-    return res.redirect("/registerSuccess");
+    return res.redirect("/success");
   }
   //else{}
     return res.render("register.ejs", {err:"Please entr all fields"})

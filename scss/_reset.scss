@@ -8,32 +8,35 @@
     background-color:#f0dada ;
     opacity: .5;
 }
-#login-body{
+#reset-container{
     @include main-content-container;
     @include webkit-placeholder;
-    
-   
-
-    .banner{
-       @include banner-mix;
+    a{
+        text-decoration: none;
+        color: $darker;
     }
-    #content-box{
+   
+  
+    .banner{
+        @include banner-mix;
+    }
+    .content-box{
         @include d-flex-col;
         justify-content: flex-start;
-        height: 100%;
+   
     }
     @include form-input;
-    #text-div{
+    #mess-box{
         margin: 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        a {
-            text-decoration: none;
-            color: $darker;
-        }
+        width: 100%;
+     
+  
+
     }
     .error-box{
-        @include error-box;
+      @include error-box;
     }
 }

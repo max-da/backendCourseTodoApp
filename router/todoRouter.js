@@ -12,7 +12,7 @@ const {homeRender,
 
 } = require("../controllers/todoControl")
 
-router.get("/myTodos", verifyUser, jwtDecode, homeRender);
+router.get("/", verifyUser, jwtDecode, homeRender);
 
 
 router.get("/addData",verifyUser,jwtDecode, addDataGET)

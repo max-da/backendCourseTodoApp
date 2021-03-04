@@ -1,0 +1,27 @@
+@import "./imports";
+
+#reg-container{
+    a{
+        text-decoration: none;
+        color: $darker;
+    }
+    @include main-content-container;
+    .banner{
+        @include banner-mix;
+    }
+    .content-box{
+        @include d-flex-col;
+        justify-content: flex-start;
+        height: 100%;
+    }
+
+    @include form-input;
+    @include webkit-placeholder;
+    p{
+        width:60%
+        
+    }
+    .error-box{
+        @include error-box;
+    }
+}

@@ -1,0 +1,17 @@
+@import "./imports";
+#background-stripe{
+    z-index: 0;
+    height: 100%;
+    position: absolute;
+    width: 75%;
+    background-color:#f0dada ;
+    opacity: .5;
+}
+#reset-pw-form-container{
+    
+    @include main-content-container;
+    .banner{
+        @include banner-mix;
+    }
+    @include form-input;
+}

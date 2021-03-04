@@ -43,7 +43,7 @@ const resetPOST = async (req, res)=> {
             + `<h2> <a href="http://localhost:8000/resetPassword/${user.token}">Reset password</a>`
         })
        
-        res.send("sent")
+        res.redirect("/success")
 
       
     }
@@ -77,8 +77,11 @@ try{
     const {email, password, confirmPassword} = req.body
     const salt = await bcrypt.genSalt(10);
     if (!password || !confirmPassword) res.render("resetPasswordForm.ejs", {err:"Please enter both fields", email:email})
-    if (password <= 5 || confirmPassword <= 5) res.render("resetPasswordform.ejs", {err:"Password must be atleast 5 characters long", email:email})
-    if (password === confirmPassword) {
+    
+    if (password && password != confirmPassword || password && password.length < 5) {
+        return res.render("resetPasswordForm.ejs", {err:"Password is too short or doesn't match",email:email})
+    }
+        else if (password){
         const hashedPassword = await bcrypt.hash(password,salt)
         const user = await  User.findOne({email:email})
         user.password = hashedPassword;
@@ -86,7 +89,7 @@ try{
         res.render("regSuccess.ejs")
     }
     else{
-        res.render("resetPasswordForm.ejs",{err:"Password doesn't match",email:email})
+        res.render("resetPasswordForm.ejs",{err:"Password is too short or doesn't match",email:email})
     }}
     catch(err){
         console.log(err)

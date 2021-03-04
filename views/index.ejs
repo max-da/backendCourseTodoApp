@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo-list</title>
     <link href="/css/main.css" rel="stylesheet" />
+    <%- include("font.ejs")%>
     <script
       src="https://kit.fontawesome.com/7002be5812.js"
       crossorigin="anonymous"
@@ -13,23 +14,26 @@
 
   </head>
   <body>
-  
-    <div id="stripe-div">
+   
+    <a id="logout" href="/logout">Logout</a>
+   
       <div id="content-wrapper">
+        <div id="background-stripe"></div>
         <div class="banner"><h1>Todo-list</h1></div>
 
         <div id="content-box">
-          <div id="inpt-and-lis">
-            <% if (todoEdit =="") { %> <%- include("add.ejs") %> <% } %> <% if
-            (todoEdit != ""){ %> <%- include("edit.ejs") %> <% } %>
-            <div id="sort-links">
-              <a href="/myTodos/?page=<%=(dataToShow/dataPerPage)%>&&sorted=1">
-                Sort by oldest
-              </a>
-              <a href="/myTodos/?page=<%=(dataToShow/dataPerPage)%>&&sorted=-1">
-                Sort by newest
-              </a>
-            </div>
+          <% if (todoEdit =="") { %> <%- include("add.ejs") %> <% } %> <% if
+          (todoEdit != ""){ %> <%- include("edit.ejs") %> <% } %>
+          <div id="sort-links">
+            <a href="/?page=<%=(dataToShow/dataPerPage)%>&&sorted=1">Sort by oldest</a>
+            
+            <a href="/?page=<%=(dataToShow/dataPerPage)%>&&sorted=-1">
+              Sort by newest
+            </a>
+          </div>
+          <div id="todo-box-container">
+         
+           
             <% if (error != "") { %>
             <div id="add-input-error-div">
               <p id="add-input-error-p"><%=error%></p>
@@ -38,14 +42,16 @@
             <div class="todo-box">
               <% let toBeCapped = data[i].name %> <% let cappedString =
               (toBeCapped[0].toUpperCase() + toBeCapped.slice(1)); %>
+              <div class="todo-box-text-box">
               <span class="todo-item"> <%=cappedString%> </span>
+            </div>
               <div class="link-box">
                 <% if (removeLink !== 1){ %>
-                <a href="/delete/<%= data[i]._id %>"
-                  ><i class="fas fa-trash-alt"></i
-                ></a>
-                <a href="/edit/<%= data[i]._id %>"
-                  ><i class="far fa-edit"></i>
+                <a class="fas fa-trash-alt" href="/delete/<%= data[i]._id %>">
+               
+                </a>
+                <a class="far fa-edit" href="/edit/<%= data[i]._id %>">
+               
                 </a>
                 <% } %>
               </div>
@@ -53,14 +59,14 @@
 
             <% } %> <% if(totaldata !== dataToShow && totaldata >= dataToShow){
             %>
-            <a href="/myTodos/?page=<%=(dataToShow/dataPerPage)+1%>">Show more</a>
+            <a href="/?page=<%=(dataToShow/dataPerPage)+1%>">Show more</a>
 
             <% }else if(totaldata <= 2) { %> <% } else { %>
-            <a href="/myTodos/?page=1">Show fewer</a>
+            <a href="/?page=1">Show fewer</a>
             <%} %>
           </div>
         </div>
       </div>
-    </div>
+   
   </body>
 </html>

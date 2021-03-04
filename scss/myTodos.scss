@@ -1,0 +1,103 @@
+@import "./imports";
+#logout{
+    color: $darker;
+    position: absolute;
+}
+#content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $lighter-bg;
+  height: 100%;
+  width: 100%;
+
+
+  .banner {
+    @include banner-mix;
+  }
+  #content-box {
+    @include d-flex-col;
+   
+    height: 100%;
+   
+
+    #input-and-button {
+      display: flex;
+
+      flex-wrap: nowrap;
+    }
+    #input-and-button,#edit-div{
+      form {
+        display: flex;
+        justify-content: center;
+        input {
+          width: 80%;
+          outline: 1px solid $darker;
+          font-size: 1.1rem;
+        }
+        button {
+          outline: 1px solid $darker;
+          width: 20%;
+          background-color: $darker;
+        }
+      }
+    }
+    #sort-links{
+        
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        a{
+            text-decoration: none;
+            color: $darker;
+        }
+    }
+    #todo-box-container{
+        margin-top: 5%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+        a{
+          color:$darker;
+          text-decoration: none;
+        }
+        .todo-box{
+            display: flex;
+            width: 100%;
+            text-align: center;
+            justify-content: space-between;
+            background-color: $lighter-bg;
+            border: $darker 1px solid;
+            height: 10%;
+            .todo-box-text-box{
+                width: 80%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+               
+            }
+            .link-box{
+               position: absolute;
+               right: 20%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 20%;
+              
+                a{
+                    display: flex;
+                    align-items: center;
+                    height: 50%;
+                    width: 100%;
+                    justify-content: center;
+                    color: $darker;
+                }
+            
+            }
+        }
+    }
+  }
+}

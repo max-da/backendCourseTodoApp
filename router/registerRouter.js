@@ -13,7 +13,7 @@ router.get("/register", registerGET)
 router.post("/register", registerPOST)
 
 
-router.get("/registerSuccess", regSuccGET)
+router.get("/success", regSuccGET)
 
 
 

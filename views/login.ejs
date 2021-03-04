@@ -1,22 +1,52 @@
-<link href="/css/main.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/main.css" rel="stylesheet" />
+        <%- include("font.ejs")%>
+    <title>Document</title>
+</head>
+<body>
+
+
+
+
 <div id="login-body">
+    <div id="background-stripe">
+ 
+    </div>
     <div class="banner">
     <h1>myTodos</h1>
 </div>
+<div id="content-box">
 <form action="/login" method="POST">
 
     <input name="email" type="email" placeholder="Email">
     <input name="password" type="password" placeholder="Password">
 
     <button>Log in</button>
-    <a href="/auth/facebook">Login with Facebook</a>
+  
 
 
 
 </form>
-<p>Forgotten your password? <a href="/resetPassword">Reset password</a></p>
-<p>Not a member? <a href="/register">Register!</a></p>
-<% if (err) {%>
-    <%=err%>
-<%}%>
+<div id="text-div">
+
+<p>Forgotten your password? </p>
+<a href="/resetPassword">Reset password</a>
+<p>Not a member? </p>
+<a href="/register">Register!</a>
 </div>
+</div>
+<div class="error-box">
+    <p><% if (err) {%>
+        <%=err%>
+    <%}%>
+    </p>
+</div>
+</div>
+   
+</body>
+</html>
