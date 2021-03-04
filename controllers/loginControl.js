@@ -6,7 +6,8 @@ const jwt = require("jsonwebtoken");
 const loginGET = (req, res) => {
   res.render("login.ejs", { err: "" });
 };
-
+//Error-hantering, kollar att fälten inte är tomma osv
+//Sen jämför lösen med bcrypt, stämmer dem är är man en validUser, och då läggs ett jwToken i cookies vilket innehåller data om användaren så att man slipper logga in hela tiden
 const loginPOST = async (req, res) => {
   const { email, password } = req.body;
   try {
