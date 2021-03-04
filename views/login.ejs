@@ -40,12 +40,16 @@
 <a href="/register">Register!</a>
 </div>
 </div>
+<% if (err) {%>
 <div class="error-box">
-    <p><% if (err) {%>
+    <div id="dummy-div"></div>
+    <p>
         <%=err%>
-    <%}%>
+  
     </p>
+    <a href="/login">X</a>
 </div>
+<%}%>
 </div>
    
 </body>

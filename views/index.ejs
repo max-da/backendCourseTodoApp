@@ -32,29 +32,35 @@
             </a>
           </div>
           <div id="todo-box-container">
-         
-           
             <% if (error != "") { %>
-            <div id="add-input-error-div">
-              <p id="add-input-error-p"><%=error%></p>
-            </div>
-            <% } %> <% for(let i = 0; i < data.length; i++){ %>
+              <div id="add-input-error-div">
+                <div id="dummy-div"></div>
+                <p id="add-input-error-p"><%=error%></p>
+                <a href="/">X</a>
+              </div>
+              <% } %>
+           
+          <% for(let i = 0; i < data.length; i++){ %>
             <div class="todo-box">
+              <div class="dummy-div"></div>
               <% let toBeCapped = data[i].name %> <% let cappedString =
               (toBeCapped[0].toUpperCase() + toBeCapped.slice(1)); %>
-              <div class="todo-box-text-box">
+      
               <span class="todo-item"> <%=cappedString%> </span>
-            </div>
-              <div class="link-box">
-                <% if (removeLink !== 1){ %>
-                <a class="fas fa-trash-alt" href="/delete/<%= data[i]._id %>">
-               
-                </a>
-                <a class="far fa-edit" href="/edit/<%= data[i]._id %>">
-               
-                </a>
-                <% } %>
+      
+                <div class="link-box">
+                  <% if (removeLink !== 1){ %>
+                  <a class="fas fa-trash-alt" href="/delete/<%= data[i]._id %>">
+                 
+                  </a>
+                  <a class="far fa-edit" href="/edit/<%= data[i]._id %>">
+                 
+                  </a>
+                  <% } %>
+      
               </div>
+          
+           
             </div>
 
             <% } %> <% if(totaldata !== dataToShow && totaldata >= dataToShow){
@@ -67,6 +73,6 @@
           </div>
         </div>
       </div>
-   
+    </div>
   </body>
 </html>

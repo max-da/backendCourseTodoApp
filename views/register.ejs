@@ -32,13 +32,30 @@
 
     <p>Back to <a href="/login">login</a></p>
 </div>
-<div class="error-box">
-    
 <%if(err == "E11000"){%>
-    <p>This email is already registred, please <a href="/login">login</a> instead</p>
-<%} else if(err){ %>
+ 
+<div class="error-box">
 
-       <p><%=err%></p> 
+        <div id="dummy-div"></div>
+        <p>
+            <p>This email is already registred, please <a href="/login">login</a> instead</p>
+      
+        </p>
+        <a href="/register">X</a>
+    </div>
+
+    <%} else if(err){ %>
+        <div class="error-box">
+        <div id="dummy-div"></div>
+        <p>
+            <p><%=err%></p> 
+      
+        </p>
+        <a href="/register">X</a>
+    </div>
+<div
+  
+    
     <%}%>
 </div>
 </div>

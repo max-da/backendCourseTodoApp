@@ -53,6 +53,34 @@
         }
     }
     #todo-box-container{
+      #add-input-error-div{
+        position: absolute;
+        z-index: 5;
+        top: 20%;
+        background-color: $lighter-bg;
+        padding: 5px;
+        border: 3px solid $darker;
+        box-shadow: 4px 8px 6px -2px rgba(0,0,0,0.58)        ;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+       width: auto;
+        #dummy-div{
+          flex-grow: 3;
+          width: 10%;
+        }
+        #add-input-error-p{
+          flex-grow: 1;
+          width: 80%;
+        }
+        a{
+          height: 100%;
+          flex-grow: 1;
+          width: 10%;
+          align-self: flex-start;
+          justify-self: flex-end;
+        }
+      }
         margin-top: 5%;
         width: 100%;
         display: flex;
@@ -67,37 +95,32 @@
             display: flex;
             width: 100%;
             text-align: center;
-            justify-content: space-between;
+            justify-content: center;
             background-color: $lighter-bg;
             border: $darker 1px solid;
             height: 10%;
-            .todo-box-text-box{
-                width: 80%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-               
+            .dummy-div{
+              flex-grow: 3;
+            }
+            .todo-item{
+              align-self: center;
+              justify-self: center;
+              flex-grow: 3; 
             }
             .link-box{
-               position: absolute;
-               right: 20%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                width: 20%;
-              
-                a{
-                    display: flex;
-                    align-items: center;
-                    height: 50%;
-                    width: 100%;
-                    justify-content: center;
-                    color: $darker;
-                }
+              flex-grow: 1;
+              display: flex;
+              align-items: center;
+              width: 15%;
+              justify-content: flex-end;
+              a{
+                margin: 2px;
+              }
+             
+            }
             
             }
-        }
+        
     }
   }
 }

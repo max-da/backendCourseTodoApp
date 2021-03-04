@@ -39,7 +39,7 @@ const homeRender = async (req, res) => {
   };
 
 const addDataGET = async (req, res) => {
-    res.render("add.ejs", { removeLink: 1 });
+    res.render("add.ejs", { removeLink: 1});
   };
 
 const addDataPOST = async (req, res) => {
@@ -77,7 +77,7 @@ const addDataPOST = async (req, res) => {
         todoEdit: "",
         totaldata: totaldata,
         dataPerPage: dataPerPage,
-        removeLink: 1,
+        removeLink: 1,    //ÄNDRAR DENNA
         page: "",
         dataToShow: dataToShow,
       });
